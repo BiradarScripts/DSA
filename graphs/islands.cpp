@@ -38,12 +38,14 @@ void islands(vector<vector<int>>adj,vector<vector<int>>&vis,vector<int>delRow,ve
 
 
     for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
+         for(int j=0;j<m;j++){ 
             if(vis[i][j]==0 && adj[i][j]==1){
                 islands(adj,vis,delRow,delCol,i,j,s);
             }
         }
     }
+
+    cout<<s.size()<<endl;
 
 
  }
