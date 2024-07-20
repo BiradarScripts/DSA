@@ -34,7 +34,7 @@ int main(){
     }
     vector<int>vis(n,0);
     vector<int>pathVis(n,0);
-    vector<int>check(n,-1);
+    vector<int>check(n,0);
     bool cycle=false;
     for(int i=0;i<n;i++){
         if(!vis[i]){
@@ -53,6 +53,6 @@ int main(){
     for(auto it:safeNode){
         cout<<it<<" ";
     }
-    
+
     return 0;
 }
