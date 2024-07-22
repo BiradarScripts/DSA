@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//sorted order 
+//sorted order need not be unique
 //deleting one deletes all its replicas
 
 int main(){

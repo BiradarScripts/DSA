@@ -1,42 +1,37 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <map>
 
 using namespace std;
 
-void isCheck(vector<int>arr,vector<int>darr,int n){
-    for(int i=0;i<n;i++){
-        if(arr[i]==0 && darr[i]==1){
-            cout<<"NO"<<endl;
-            return;
-        }
-        else if(arr[i]==0 && darr[i]==0){
-            continue;
-        }
-        else{
-            break;
-        }
-    }
-    cout<<"YES"<<endl;
-}
-
-int main(){
-    int a;
-    cin >> a;
-    for(int i=0;i<a;i++){
+int main() {
+    int t;
+    cin >> t;
+    for(int i=0;i<t;i++){
         int n;
         cin >> n;
-        string s;
-        cin >> s;
-        string t;
-        cin >> t;
-        vector<int>arr(n);
-        vector<int>darr(n);
-        for(int i=0;i<n;i++){
-            arr[i] = s[i] - '0';
-            darr[i] = t[i] - '0';
-        }
-        
-        isCheck(arr,darr,n);
+        vector<int> v(n);
+        map<int, int> freqMap;
 
+        for (int i = 0; i < n; ++i) {
+            cin >> v[i];
+            freqMap[v[i]]++;
+        }
+
+        bool isPossible = false;
+
+        for (int i = 50; i >= 1; --i) {
+            freqMap[i] += freqMap[i + 1];
+            if (freqMap[i] % 2 == 1) {
+                cout << "YES" << endl;
+                isPossible = true;
+                break;
+            }
+        }
+
+        if (!isPossible) {
+            cout << "NO" << endl;
+        }
     }
+    return 0;
 }
