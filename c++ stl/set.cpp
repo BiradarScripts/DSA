@@ -23,7 +23,14 @@ int main(){
 
     auto it=s.lower_bound(2);
     auto it=s.upper_bound(2);
-
-
     //logn
+
+    //auto it=st.begin(); it willl become an iterator
+    //auto it=(*st.begin()); it will become a value
+    //if we need to get the value of a pointer use *
+
+    //set iterator
+    for(auto it=s.begin();it!=s.end();it++){
+        cout<<*it<<" ";
+    }
 }
