@@ -20,7 +20,7 @@ void dijkstra(vector<vector<pair<int,int>>>adj,set<pair<int, int>> st,vector<int
             int w=it.second;
             if(dis+w<dist[v]){
                 //i just found a new shortest path
-                //so i remove the existing one
+                  //so i remove the existing one
                 if(dist[v]!=1e9){
                     st.erase({dist[v],v});
                 }
