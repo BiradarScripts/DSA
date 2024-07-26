@@ -10,21 +10,23 @@ using namespace std;
 //priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
 //this is how a minimum heap is created
 
-7
-3
-1 2 3
-2
-3 2
-3
-3 1 5
-4
-1 1 2 3
-3
-4 3 2
-9
-16 2 4 2 256 2 4 2 8
-11
-10010 10009 10008 10007 10006 10005 10004 10003 10002 10001 10000
+void dijkstra(vector<vector<pair<int,int>>>adj,priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>&pq,vector<int>&dist,int src){
+    dist[src]=0;
+    pq.push({0,src});
+    while(!pq.empty()){
+        int u=pq.top().second;
+        pq.pop();
+        for(auto x:adj[u]){
+            int v=x.first;
+            int w=x.second;
+            if(dist[v]>dist[u]+w){
+                dist[v]=dist[u]+w;
+                pq.push({dist[v],v});
+            }
+        }
+    }
+}
+
 
 int main(){
     int n,m;
