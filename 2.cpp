@@ -8,31 +8,19 @@ int main(){
     int a;
     cin >> a;
     for(int i=0;i<a;i++){
-        int n,x,y;
-        cin>>n>>x>>y;
-        vector<int>arr(n,0);
-        
-        if(x<n){
-            for(int i=x;i<n;i++){
-                arr[i]=-1;
+        int n,x;
+        cin>>n>>x;
+
+        long long check=0;
+
+        for(int u=1;u<=x;u++){
+            int vmax=min(x-u,n/u);
+            for(int v=1;v<=vmax;v++){
+                int wmax=min(x-u-v,(n-u*v)/(u+v));
+                check+=max(0,wmax);
             }
         }
-        if(y-2>=0){
-            for(int i=0;i<y-1;i++){
-                arr[i]=-1;
-            }
-        }
 
-        for(int t=y-1;t<x;t++){
-            arr[t]=1;
-        }
-
-        for(int i=0;i<n;i++){
-            cout<<arr[i]<<" ";
-        }
-
-        cout<<endl;
-        
-        
+        cout<<check<<endl;
     }
 }
