@@ -36,6 +36,7 @@ void prims(const vector<vector<pair<int, int>>>& adj, vector<int>& vis, vector<v
             vis[it.node]=1;
         }
 
+        //very imortant step
         if(vis[it.node]){
             continue;
         }
