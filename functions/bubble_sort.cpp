@@ -2,7 +2,7 @@
 #include<vector>
 
 using namespace std;
-//best time complexity is o(n)
+//best time complexity is o(n) worst case is o(n^2)
 void bubble_sort(vector<int>&arr,int n){
     for(int i=n-1;i>=0;i++){
         int didSwap=0;

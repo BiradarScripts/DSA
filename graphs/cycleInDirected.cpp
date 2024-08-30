@@ -8,7 +8,7 @@ bool isCycle(int node,vector<vector<int>>&adj,vector<int>&vis,vector<int>&pathVi
     pathVis[node]=1;
     for(auto it:adj[node]){
         if(vis[it]==0){
-            if(isCycle(it,adj,vis,pathVis)){
+            if(isCycle(it,adj,vis,pathVis)){ 
                 return true;
             }
         }else if(pathVis[it]){

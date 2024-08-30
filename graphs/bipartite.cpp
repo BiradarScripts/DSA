@@ -15,7 +15,7 @@
 
         for(auto it:adj[node]){
             if(color[it]==-1){
-                color[it]=!color[node];
+                color[it]!=color[node];
             }else if(color[it]==color[node]){
                 return false;
             }

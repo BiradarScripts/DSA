@@ -24,12 +24,12 @@ void dijkstra(vector<vector<pair<int,int>>>adj,priority_queue<pair<int, int>, ve
                 pq.push({dist[v],v});
             }
         }
-    }
+    } 
 }
 
 
 int main(){
-    int n,m;
+    int n, m;
     cin>>n>>m;
     vector<vector<pair<int,int>>>adj(n+1);
     for(int i=0;i<m;i++){

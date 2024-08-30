@@ -5,6 +5,8 @@
 using namespace std;
 
 
+//time complexity is o(n+2e)
+
 bool isCycle(vector<vector<int>>&adj,vector<int>vis,int src){
     vis[src]=1;
     queue<pair<int,int>>q;
@@ -12,7 +14,7 @@ bool isCycle(vector<vector<int>>&adj,vector<int>vis,int src){
     while(!q.empty()){
         pair<int,int>p=q.front();
         q.pop();
-        for(auto it:adj[p.first]){
+        for(auto it:adj[p.first]){ 
             if(vis[it]==1 && p.first!=it){
                 return true;
             }

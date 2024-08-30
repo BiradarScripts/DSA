@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//divide and conquor
+//nlogn always
 void merge(vector<int>&arr,int low,int mid,int high){
     //we basically can assume the sub array as the following
     //[low..mid]

@@ -8,6 +8,9 @@ using namespace std;
 //step2
 //
 
+//best case is o(n^2) and o(1)
+//worst case is o(n^2) and o(n)
+
 void selection_sort(vector<int>&arr,int n){
     for(int i=0;i<n-1;i++){
         int min_index=i;
