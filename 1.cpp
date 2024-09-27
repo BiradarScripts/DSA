@@ -1,51 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <map>
-
 using namespace std;
 
-#define ll long long
-
 int main() {
-    ll num;
-    cin>>num;
-    string s = to_string(num);
+    int t;
+    cin >> t;
 
-    int n = s.size();
-    map<char, string> mp;
+   for(int i = 0; i < t; i++) {
+        int n;
+        cin >> n;
 
-    mp['2'] = "2";
-    mp['3'] = "3";
-    mp['4'] = "22";
-    mp['5'] = "5";
-    mp['6'] = "32";
-    mp['7'] = "7";
-    mp['8'] = "222";
-    mp['9'] = "33";
+        string given = "aeiou";
+        string ans = "";
 
-    string ans = "";
-    // for (int i = 0; i < n; i++) {
-    //     if (s[i] != '1' && s[i] != '0') {  
-    //         ans += mp[s[i]];
-    //         cout<<ans<<" "<<i<<endl;
-    //     }
-    // }
-    // for(char c:s){
-    //     cout<<c<<endl;
-    //     // if (c != '1' && c != '0') {  
-    //     //     ans += mp[c];
-    //     // }
-    // }
+        if (n <= 5) {
+            for (int i = 0; i < n; i++) {
+                ans += given[i];
+            }
+        } else {
+            int counts[5] = {0};  
 
-    for(int i=0;i<n;i++){
-        cout<<s[i]<<endl;
+            int check = n / 5;
+            int re = n % 5;
+
+            for (int i = 0; i < 5; i++) {
+                counts[i] = check;  
+            }
+            for (int i = 0; i < re; i++) {
+                counts[i]++;  
+            }
+
+            for (int i = 0; i < 5; i++) {
+                ans += string(counts[i], given[i]);
+            }
+        }
+
+        cout << ans << endl;
     }
-
-    // Sort the resulting string in descending order to form the largest possible number
-    // sort(ans.begin(), ans.end(), greater<char>());
-
-    cout << ans << endl;
 
     return 0;
 }

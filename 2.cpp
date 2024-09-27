@@ -1,37 +1,63 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<string>
-#include<map>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int main(){
+#define ll long long
 
-    int n;
-    cin>>n;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-    string s;
-    cin>>s;
+    int testcases;
+    cin >> testcases;
 
-    map<char, string> mp;
+    while (testcases-- > 0) {
+        ll n, m, q;
+        cin >> n >> m >> q;
 
-    mp['2'] = "2";
-    mp['3'] = "3";
-    mp['4'] = "322";
-    mp['5'] = "5";
-    mp['6'] = "53";
-    mp['7'] = "7";
-    mp['8'] = "7222";
-    mp['9'] = "7332";
-    string ans = "";
-    for(char c:s){
-        if (c != '1' && c != '0') {  
-            ans += mp[c];
+        vector<ll> brr(m);
+        for (int i = 0; i < m; i++) {
+            cin >> brr[i];  // Teacher positions
+        }
+        
+        sort(brr.begin(), brr.end());  // Sort the teacher positions
+
+        for (int i = 0; i < q; i++) {
+            ll alpha;
+            cin >> alpha;  // David's position
+
+            ll ans = 0;
+
+            // Find the closest teachers to the left and right of David
+            auto it = lower_bound(brr.begin(), brr.end(), alpha);
+
+            // Case where alpha is exactly at a teacher's position
+            if (it != brr.end() && *it == alpha) {
+                ans = 0;
+            } else {
+                ll left_teacher = (it == brr.begin()) ? LLONG_MIN : *(it - 1);  // Teacher to the left
+                ll right_teacher = (it == brr.end()) ? LLONG_MAX : *it;  // Teacher to the right
+
+                // If David is between two teachers
+                if (alpha > left_teacher && alpha < right_teacher) {
+                    ans = min(alpha - left_teacher, right_teacher - alpha);  // Minimize distance to either teacher
+                } 
+                // If David is beyond the rightmost teacher
+                else if (alpha > right_teacher) {
+                    ans = n - alpha;
+                } 
+                // If David is before the leftmost teacher
+                else if (alpha < left_teacher) {
+                    ans = alpha - 1;
+                }
+            }
+
+            cout << ans <<i<< endl;
         }
     }
 
-    sort(ans.begin(), ans.end(), greater<char>());
-
-    cout<<ans<<endl;
+    return 0;
 }
