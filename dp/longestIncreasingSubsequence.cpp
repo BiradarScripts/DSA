@@ -1,7 +1,8 @@
 #include<iostream>
 #include<vector>
 
-using namespace std;\
+using namespace std;
+
 
 //it also has a o(n) solution aswell go through it
 
