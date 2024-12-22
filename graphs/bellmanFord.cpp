@@ -1,60 +1,94 @@
-#include<iostream>
-#include<vector>
-#include<climits>
+//{ Driver Code Starts
+#include <cstdio> // for freopen
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-void bellmanFord(int n,vector<vector<pair<int,int>>>adj,vector<int>&dist,int src){
-    dist[src]=0;
-    for(int i=0;i<n-1;i++){
-        int count=0;
-        for(auto it:adj){
-            for(auto itt:it){
-                int u=count;
-                int v=itt.first;
-                int w=itt.second;
-                if(dist[u]!=INT_MAX && dist[u]+w<dist[v]){
-                    dist[v]=dist[u]+w;
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+    /*  Function to implement Bellman Ford
+     *   edges: vector of vectors which represents the graph
+     *   src: source vertex
+     *   V: number of vertices
+     */
+    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
+        // Code here
+        vector<int>distance(V,1e8);
+        // vector<int>distance(V,)
+        distance[src]=0;
+        
+        for(int i=0;i<V;i++){
+            for(auto it:edges){
+                int u=it[0];
+                int v=it[1];
+                int wt=it[2];
+                
+                if(distance[u]!=1e8 && distance[v]>distance[u]+wt){
+                    distance[v]=distance[u]+wt; 
                 }
             }
-            count++;
         }
-    }
-
-    int count=0;
-    for(auto it:adj){
-        for(auto itt:it){
-            int u=count;
-            int v=itt.first;
-            int w=itt.second;
-            if(dist[u]!=INT_MAX && dist[u]+w<dist[v]){
-                cout<<"Negative cycle detected"<<endl;
-                return;
-            }
+        
+        for(auto it:edges){
+                int u=it[0];
+                int v=it[1];
+                int wt=it[2];
+                
+                if(distance[u]!=1e8 &&distance[v]>distance[u]+wt){
+                    return {-1};
+                }
         }
-        count++;
+        
+        return distance;
+        
     }
+};
 
-    return ;
 
-}
+//{ Driver Code Starts.
 
-int main(){
-    int n,m;
-    cin>>n>>m;
-    vector<vector<pair<int,int>>>adj(n);
-    for(int i=0;i<m;i++){
-        int u,v,w;
-        cin>>u>>v>>w;
-        adj[u].push_back({v,w});
+int main() {
+
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        int N, m;
+        cin >> N >> m;
+
+        vector<vector<int> > edges;
+
+        for (int i = 0; i < m; ++i) {
+            int u, v, w;
+            cin >> u >> v >> w;
+
+            vector<int> edge(3);
+            edge[0] = u;
+            edge[1] = v;
+            edge[2] = w;
+            edges.push_back(edge);
+        }
+
+        int src;
+        cin >> src;
+        cin.ignore();
+
+        Solution obj;
+        vector<int> res = obj.bellmanFord(N, edges, src);
+
+        for (size_t i = 0; i < res.size(); i++) {
+            cout << res[i] << " ";
+        }
+        cout << "\n";
     }
-    vector<int>dist(n,INT_MAX);
-    int src;
-    cin>>src;
-    bellmanFord(n,adj,dist,src);
-    for(int i=0;i<n;i++){ 
-        cout<<dist[i]<<" ";
-    }
-    cout<<endl;
     return 0;
 }
+
+// } Driver Code Ends
